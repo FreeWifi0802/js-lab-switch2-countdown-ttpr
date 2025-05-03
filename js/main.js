@@ -38,9 +38,30 @@ function CountDownToMario(endTime, divId) {
   const _hour   = _minute * 60;
   const _day    = _hour * 24;
 
+  let timer;
   /* STEP 2: Declare any variables you’ll need here
             (e.g. interval id). */
 
+    let showRemaining = function() {
+        const currentTime = new Date();
+        let timeLeft = end - currentTime;
+
+        if (timeLeft <= 0){
+            clearInterval(timer);
+            document.getElementById(divId).innerHTML = "The switch 2 has been released!";
+        } else {
+            const daysLeft = Math.floor(timeLeft / _day);
+            const hoursLeft = Math.floor(timeLeft % _day) / _hour;
+            const minutesLeft = Math.floor(timeLeft % _hour) / _minute;
+            const secondsLeft = Math.floor(timeLeft % _hour) / _second;
+            document.getElementById(divId).innerHTML = `Days: ${daysLeft}s Hours: ` +
+            `${hoursLeft}s Minutes: ${minutesLeft}s Seconds: ${secondsLeft}s`;
+        }
+    }
+
+    timer = setInterval(() =>{
+        showRemaining();
+    }, _second);
   /* STEP 3: Write an inner `showRemaining()` function:
        • get current time (`new Date()`)
        • figure out the distance to launch
@@ -76,4 +97,4 @@ function CountDownToMario(endTime, divId) {
 /* ======================================================
    🎉  BONUS  — optional extras
    ------------------------------------------------------
-   • Add a confetti explosion (see confetti.js) - Check js in 
+   • Add a confetti explosion (see confetti.js) - Check js in */
