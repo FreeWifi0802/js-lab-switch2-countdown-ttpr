@@ -50,12 +50,12 @@ function CountDownToMario(endTime, divId) {
             clearInterval(timer);
             document.getElementById(divId).innerHTML = "The switch 2 has been released!";
         } else {
-            const daysLeft = Math.floor(timeLeft / _day);
-            const hoursLeft = Math.floor(timeLeft % _day) / _hour;
-            const minutesLeft = Math.floor(timeLeft % _hour) / _minute;
-            const secondsLeft = Math.floor(timeLeft % _hour) / _second;
-            document.getElementById(divId).innerHTML = `Days: ${daysLeft}s Hours: ` +
-            `${hoursLeft}s Minutes: ${minutesLeft}s Seconds: ${secondsLeft}s`;
+            const daysLeft = String(Math.floor(timeLeft / _day)).padStart(2, '0');
+            const hoursLeft = String(Math.floor((timeLeft % _day) / _hour)).padStart(2, '0');
+            const minutesLeft = String(Math.floor((timeLeft % _hour) / _minute)).padStart(2, '0');
+            const secondsLeft = String(Math.floor((timeLeft % _minute) / _second)).padStart(2, '0');
+            document.getElementById(divId).innerHTML = `Days: ${daysLeft} Hours: ` +
+            `${hoursLeft} Minutes: ${minutesLeft}s Seconds: ${secondsLeft}s`;
         }
     }
 
